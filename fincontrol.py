@@ -1,3 +1,6 @@
+import requests
+from tkinter import *
+
 # Script para cálculo de dívidas (Saídas - Entradas - POSITIVO/NEGATIVO)
 
 # DISPOSIÇÕES
@@ -59,6 +62,25 @@ def finalBalanceSum(cashInflowArraySum, billsArraySum):
         print(f"Você está positivado (em R$): {finalBalance}")
     else:
         print(f"Você está negativado (em R$): {finalBalance}")
+        
+        
+# INTEGRAÇÃO COM A INTERFACE DA BIBLIOTECA TKINTER
+        
+def calculate_balance():
+    try:
+        bills = bills_entry.get()
+        cash_in = cash_in_entry.get()
+
+        bills_sum = sum(float(v.replace(',', '.')) for v in bills.split())
+        cash_in_sum = sum(float(v.replace(',', '.')) for v in cash_in.split())
+
+        final_balance = cash_in_sum - bills_sum
+        if final_balance > 0:
+            result_label.config(text=f"Você está positivado: R$ {final_balance:.2f}")
+        else:
+            result_label.config(text=f"Você está negativado: R$ {final_balance:.2f}")
+    except ValueError:
+        result_label.config(text="Erro: Insira apenas números válidos.")
 
 
 # Função principal para rodar o código
@@ -68,6 +90,6 @@ def main():
     finalBalanceSum(cashInflow, bills)
 
 
-# Executa a função principal
+# Executa a função principal (se necessário para outra execução no console)
 if __name__ == "__main__":
     main()
