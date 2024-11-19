@@ -90,6 +90,30 @@ def main():
     finalBalanceSum(cashInflow, bills)
 
 
+# Criando a interface com tkinter
+window = Tk()
+window.title("Calculadora de Dívidas e Entradas")
+
+# Rótulos e campos de entrada
+Label(window, text="Digite suas dívidas (separadas por espaço):").pack(pady=5)
+bills_entry = Entry(window, width=40)
+bills_entry.pack(pady=5)
+
+Label(window, text="Digite suas entradas (separadas por espaço):").pack(pady=5)
+cash_in_entry = Entry(window, width=40)
+cash_in_entry.pack(pady=5)
+
+# Botão de cálculo
+calculate_button = Button(window, text="Calcular", command=calculate_balance)
+calculate_button.pack(pady=10)
+
+# Rótulo para exibir o resultado
+result_label = Label(window, text="", font=("Arial", 12, "bold"))
+result_label.pack(pady=10)
+
+# Inicia a interface
+window.mainloop()
+
 # Executa a função principal (se necessário para outra execução no console)
 if __name__ == "__main__":
     main()
